@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* StrCpy(const char* src) {
+    // 计算src字符串的长度
+    size_t len = strlen(src);
+    
+    // 用malloc申请长度为len+1的内存空间
+    char* new_str = (char*)malloc((len + 1) * sizeof(char));
+    
+    // 将src字符串逐个字符复制到新申请的内存空间
+    for (size_t i = 0; i < len; i++) {
+        new_str[i] = src[i];
+    }
+    
+    // 将申请内存空间的最后一位放入'\0'
+    new_str[len] = '\0';
+    
+    // 返回新申请的内存空间指针
+    return new_str;
+}
+
+int main() {
+    const char* source = "Hello, World!";
+    char* copy = StrCpy(source);
+    
+    printf("原字符串: %s\n", source);
+    printf("拷贝字符串: %s\n", copy);
+    
+    // 释放内存空间
+    free(copy);
+    
+    return 0;
+}
